@@ -5,12 +5,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.urfu.pizzaSite.RestApiPizzaApplication.model.Client;
-import ru.urfu.pizzaSite.RestApiPizzaApplication.model.ClientInfo;
-import ru.urfu.pizzaSite.RestApiPizzaApplication.repositories.ClientInfoRepository;
-import ru.urfu.pizzaSite.RestApiPizzaApplication.repositories.ClientRepository;
-import ru.urfu.pizzaSite.RestApiPizzaApplication.security.ClientDetail;
-import ru.urfu.pizzaSite.RestApiPizzaApplication.util.exceptions.NotFoundException;
+import pizza.models.Client;
+import pizza.models.ClientInfo;
+import pizza.repositories.ClientInfoRepository;
+import pizza.repositories.ClientRepository;
+import pizza.security.ClientDetail;
+import pizza.util.exceptions.NotFoundException;
 
 import java.util.Optional;
 
