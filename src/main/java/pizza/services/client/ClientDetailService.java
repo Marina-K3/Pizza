@@ -6,11 +6,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pizza.models.Client;
-import pizza.models.ClientInfo;
-import pizza.repositories.ClientInfoRepository;
 import pizza.repositories.ClientRepository;
 import pizza.security.ClientDetail;
-import pizza.util.exceptions.NotFoundException;
+import pizza.util.exseptions.NotFoundExseption;
 
 import java.util.Optional;
 
@@ -27,7 +25,7 @@ public class ClientDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String phoneNumber) throws UsernameNotFoundException {
         Optional<Client> client = clientRepository.findByPhoneNumber(phoneNumber);
         if (client.isEmpty())
-            throw new NotFoundException("Client with this phone number does not exist");
+            throw new NotFoundExseption("Client with this phone number does not exist");
         return new ClientDetail(client.get());
     }
 }
