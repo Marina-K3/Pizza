@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import pizza.security.JWTUtil;
-import pizza.services.Client.ClientDetailService;
+import pizza.services.client.ClientDetailService;
 
 import java.io.IOException;
 import java.util.Collections;
