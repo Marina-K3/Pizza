@@ -1,0 +1,1923 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+section {
+  max-width: 100%;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Kreadon";
+  background-color: #fffdee;
+  /* zoom: 100%; */
+
+  width: 100vw;
+  /* overflow-x: hidden; */
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 95%;
+  margin: 0 auto;
+}
+
+/*Верстка шапки*/
+header {
+  margin-bottom: 98px;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 4px #141414 solid;
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+}
+
+.header-list__item {
+  line-height: 62px;
+  font-size: 48px;
+  color: #141414;
+  font-weight: 600;
+  align-items: center;
+  margin-right: 61px;
+}
+
+.header-list__item a {
+  text-decoration: none;
+  color: #141414;
+}
+
+.header-list__item a:hover {
+  color: #dca15d;
+}
+
+.header-list__item a:active {
+  color: #bc6c25;
+}
+
+.header-list__item:last-child {
+  margin-right: 0;
+  padding-left: 21px;
+  border-left: 4px gray solid;
+}
+
+.header-list__item:nth-last-child(-n + 2) {
+  margin-right: 21px;
+}
+
+/*Верстка новостей главной страницы*/
+
+.section-name {
+  margin: 0;
+  margin-bottom: 61px;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 83px;
+  text-align: center;
+}
+
+.news-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-list__item {
+  position: relative;
+  margin-right: 30px;
+  width: 20%;
+}
+.news-list__item a {
+  width: 100%;
+}
+.news-list__item a img {
+  max-width: 100%;
+}
+
+.news-list__item:last-child {
+  margin-right: 0;
+}
+
+.news-name {
+  margin: 0;
+  position: absolute;
+  font-size: 47px;
+  font-weight: 600;
+  line-height: 41px;
+  right: 47px;
+  left: 35px;
+  bottom: 37px;
+  color: #ffffff;
+}
+
+.news {
+  margin-bottom: 106px;
+}
+
+/*Верстка информации о нас главной страницы*/
+
+.info {
+  position: relative;
+  margin-bottom: 100px;
+  height: 890px;
+}
+
+.info img {
+  position: absolute;
+  right: -50px;
+  top: 0;
+}
+
+.info p {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 52px;
+  max-width: 60%;
+}
+
+/*Верстка отзывов главной страницы*/
+
+.reviews {
+  margin-bottom: 60px;
+}
+.reviews-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviews-list__item {
+  margin-right: 55px;
+}
+
+.reviews-list__item:last-child {
+  margin-right: 0;
+}
+
+.review-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-list__item {
+  margin-right: 55px;
+}
+
+.review-list__item:last-child {
+  margin-right: 0;
+}
+
+.review-author {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 52px;
+}
+
+.review-info {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 52px;
+}
+
+.star {
+  padding-left: 5px;
+  margin-bottom: 27px;
+}
+
+/*Верстка контактов главной страницы*/
+
+.contacts-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.contacts-list__item:first-child {
+  margin-right: 90px;
+}
+
+.contacts-list__item p {
+  font-size: 40px;
+  line-height: 52px;
+  margin: 0;
+}
+
+.contacts-list__item p:nth-of-type(2) {
+  font-weight: 600;
+  margin-top: 21px;
+}
+
+.contacts-list__item p:nth-of-type(3) {
+  font-weight: 600;
+}
+
+.contacts-list__item p:nth-of-type(4) {
+  margin-top: 21px;
+}
+.social-links {
+  margin-top: 21px;
+}
+.social-links a {
+  margin-right: 33px;
+}
+
+/*Верстка подвала*/
+
+footer .container {
+  margin-top: 117px;
+  border-top: 4px #141414 solid;
+  padding-top: 21px;
+}
+
+.footer-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.copyright {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.footer-list__item-name {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 62px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.footer-list__item p {
+  font-size: 32px;
+  line-height: 41px;
+  margin: 0;
+  margin-bottom: 7px;
+}
+
+.payment-methods {
+  margin-bottom: 35px;
+}
+
+.payment-methods a {
+  margin-right: 29px;
+}
+
+/*Вертка окна регистрации*/
+
+/*Вертка окна вхоад*/
+
+.entranceAccount {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  padding: 10% 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.entranceAccount-content {
+  background-color: #e5e4d6;
+  margin: 0 auto;
+  padding: 20px;
+  width: 756px;
+  height: 638px;
+  border-radius: 60px;
+}
+
+.entrance-container {
+  margin: 63px 58px 59px 76px;
+}
+
+.closeEntrance {
+  float: right;
+}
+
+.closeEntrance:hover,
+.closeEntrance:focus {
+  cursor: pointer;
+}
+
+.entrance-container__name {
+  padding: 0;
+  margin: 0;
+  margin-top: 63px;
+  margin-left: 58px;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 83px;
+  color: #bc6c25;
+  margin-bottom: 8px;
+}
+
+.entrance-container__info {
+  margin: 0;
+  margin-left: 63px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #273617;
+  margin-bottom: 24px;
+  max-width: 573px;
+}
+
+.entrance-telephone {
+  margin: 0 59px 0 63px;
+  padding: 0 88px 0 28px;
+}
+
+.entrance-telephone p {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  color: #273617;
+  margin: 0;
+  margin-bottom: 15px;
+  margin-left: 20px;
+}
+
+.entrance-telephone input {
+  background-color: #fffdee;
+  width: 500px;
+  height: 70px;
+  border-radius: 10px;
+  padding: 13px 43px;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 57px;
+  color: #273617;
+  margin-bottom: 16px;
+}
+
+.entrance-telephone_btn {
+  margin: 0z;
+  display: block;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 42px;
+  text-decoration: none;
+  color: #bc6c25;
+  margin-left: 57px;
+}
+
+.entrance-container__comment {
+  margin: 0;
+  margin-left: 63px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  margin-top: 44px;
+  color: #898881;
+}
+
+.entrance-container__comment a {
+  color: #bc6c25;
+  text-decoration: none;
+}
+
+/*Верстка подтверждения входа*/
+.confirmAccount {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.confirmAccount-content {
+  background-color: #e5e4d6;
+  margin: 15% auto;
+  padding: 20px;
+  width: 756px;
+  height: 638px;
+  border-radius: 60px;
+}
+
+.confirm-container {
+  margin: 63px 58px 59px 76px;
+}
+
+.closeConfirm {
+  float: right;
+}
+
+.closeConfirm:hover,
+.closeConfirm:focus {
+  cursor: pointer;
+}
+
+.confirm-container__name {
+  padding: 0;
+  margin: 0;
+  margin-top: 63px;
+  margin-left: 58px;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 83px;
+  color: #bc6c25;
+  margin-bottom: 8px;
+}
+
+.confirm-container__info {
+  margin: 0;
+  margin-left: 63px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #273617;
+  margin-bottom: 24px;
+  max-width: 573px;
+}
+
+.confirm-container__info span {
+  font-weight: 600;
+  color: #bc6c25;
+}
+
+.confirm-container__info a {
+  text-decoration: none;
+  color: #bc6c25;
+  line-height: 42px;
+}
+
+.confirm-telephone {
+  margin: 0 59px 0 63px;
+  padding: 0 88px 0 28px;
+}
+
+.confirm-telephone p {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  color: #273617;
+  margin: 0;
+  margin-bottom: 15px;
+  margin-left: 20px;
+}
+
+.code-input {
+  display: flex;
+  justify-content: space-between;
+  width: 560px;
+  margin: 0 auto;
+  margin-bottom: 19px;
+}
+
+.code-input input {
+  width: 77px;
+  height: 83px;
+  background-color: #fffdee;
+  color: #273617;
+  border: 1px #898881 solid;
+  text-align: center;
+  font-size: 44px;
+  border-radius: 16px;
+  padding: 13px 23px;
+}
+
+.confirm-telephone_btn {
+  margin: 0;
+  display: block;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 42px;
+  text-decoration: none;
+  color: #bc6c25;
+  margin-left: 110px;
+}
+
+.confirm-container__comment {
+  margin: 0;
+  margin-left: 63px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  margin-top: 44px;
+  color: #898881;
+}
+
+.confirm-container__comment a {
+  color: #bc6c25;
+  text-decoration: none;
+}
+
+/*Вертка личного кабинета(данные)*/
+
+.account-info {
+  padding: 0 77px;
+  margin-bottom: 147px;
+}
+
+.account-info__list {
+  display: flex;
+  align-items: center;
+}
+
+.account_info__item {
+  margin-right: 99px;
+}
+
+.account_info__item:last-child {
+  margin-right: 0;
+}
+
+.section-account__name {
+  font-weight: 599;
+  font-size: 64px;
+  line-height: 83px;
+  margin: 0;
+  margin-bottom: 28px;
+}
+
+.account-avatar {
+  border-radius: 5;
+  display: block;
+  margin-top: 66px;
+  margin-bottom: 26px;
+  width: 425px;
+  height: 425px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.account_info__item a {
+  display: block;
+  font-size: 36px;
+  font-weight: 330;
+  line-height: 47px;
+  text-decoration: none;
+  color: #bc6c25;
+  text-align: center;
+}
+
+.account-data {
+  display: grid;
+  grid-template-columns: 520px 520px;
+  grid-gap: 50px 28px;
+}
+
+.account-data__item {
+  position: relative;
+}
+
+.account-data p {
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 330;
+  line-height: 31px;
+  color: #273617;
+}
+
+.account-data__form {
+  border-radius: 20px;
+  width: 518px;
+  background-color: #fffdee;
+  font-size: 44px;
+  line-height: 57px;
+  font-weight: 330;
+  padding: 15px 43px;
+}
+
+.account-data__rename {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  text-decoration: none;
+  color: #bc6c25;
+  font-size: 24px;
+  line-height: 31px;
+  font-weight: 330;
+}
+
+.account-data__form-container {
+  width: 518px;
+  display: flex;
+  gap: 12px;
+}
+
+.account-data__form-container select {
+  box-sizing: border-box;
+}
+
+.account-data__form {
+  font-size: 44px;
+  font-weight: 330;
+  line-height: 57px;
+  color: #273617;
+}
+
+/*Верстка личного кабинета(Истоиря заказов)*/
+
+.section--order-hist {
+  box-sizing: content-box;
+  max-width: 1713px;
+  padding: 0 77px;
+  margin: 0 auto;
+  margin-bottom: 147px;
+}
+.section__title {
+  margin: 0;
+  margin-bottom: 64px;
+  font-size: 64px;
+  font-weight: 600;
+  color: #273617;
+}
+
+.section__content {
+  display: flex;
+  align-items: center;
+}
+
+.slide-history {
+  display: block;
+}
+
+.orders {
+  margin: 0;
+  width: 1610px;
+  margin-right: 86px;
+  list-style: none;
+
+  display: grid;
+  grid-template-rows: 200px 30px 200px;
+
+  gap: 0 450px;
+
+  overflow-x: auto;
+}
+.orders::before {
+  grid-row: 2;
+  grid-column: 1 / span 4;
+  content: "";
+
+  width: 100%;
+  height: 6px;
+  background-color: #dca15d;
+}
+
+.orders__item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  grid-column: span 2;
+
+  font-size: 32px;
+  color: #273617;
+}
+.orders__item::before {
+  content: "";
+  box-sizing: content-box;
+
+  position: absolute;
+  left: 45px;
+
+  width: 35px;
+  height: 35px;
+
+  background-color: #dca15d;
+  border: 5px solid #bc6c25;
+  border-radius: 50%;
+}
+.orders__item:nth-of-type(odd) {
+  grid-row: 3;
+}
+.orders__item:nth-of-type(odd)::before {
+  top: -52px;
+}
+.orders__item:nth-of-type(even) {
+  grid-row: 1;
+}
+.orders__item:nth-of-type(even)::before {
+  bottom: -23px;
+}
+.orders__item:nth-of-type(2) {
+  grid-column: 2/4;
+}
+.orders__item-date {
+  margin-bottom: 12px;
+}
+.orders__item-id {
+}
+.orders__item-total {
+  font-size: 44px;
+  /* line-height: normal; */
+}
+.orders__item-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+
+  font-family: "Kreadon", sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: #bc6c25;
+
+  border: 0;
+  background: none;
+
+  cursor: pointer;
+}
+
+/*Вертка личного кабинета(Оставить отзыв)*/
+.feedback {
+  padding: 0 77px;
+}
+
+.section-feedback__name {
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 83px;
+  margin: 0;
+  color: #273617;
+}
+
+.feedback p {
+  margin: 0;
+  font-size: 40px;
+  line-height: 52px;
+  font-weight: 330;
+  margin-bottom: 29px;
+}
+
+.feedback-form {
+  width: 1390px;
+  height: 278px;
+  background: #fffdee;
+  margin-bottom: 18px;
+  font-size: 40px;
+  line-height: 52px;
+  font-weight: 330;
+  padding: 30px;
+  border-radius: 20px;
+  color: #273617;
+}
+
+.feedback a {
+  display: block;
+  text-decoration: none;
+  color: #bc6c25;
+  font-size: 36px;
+  line-height: 49px;
+  font-weight: 330;
+  text-align: end;
+  padding-right: 240px;
+}
+
+/*Верстка первой сектии(каталог)*/
+.catalog-info {
+  padding: 0 91px;
+  position: relative;
+  margin-bottom: 210px;
+}
+
+.catalog-info__name {
+  font-weight: 600;
+  font-size: 98px;
+  line-height: 125px;
+  color: #bc6c25;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.catalog-info p {
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 62px;
+  margin: 0;
+  max-width: 60%;
+}
+
+.catalog-info img {
+  position: absolute;
+  right: -50px;
+  top: 0;
+}
+
+/*Верстка выбора пиццы(каталог)*/
+.catalog {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 83px;
+  margin: 0;
+  margin-bottom: 35px;
+  padding-left: 87px;
+}
+
+.catalog-pizza {
+  margin-bottom: 64px;
+}
+
+.catalog-pizza__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catalog-pizza__item {
+  padding: 37px 53px 8px;
+  margin-right: 39px;
+  max-width: 510px;
+  height: auto;
+}
+
+.catalog-pizza__item:first-child {
+  padding: 0;
+}
+
+.catalog-pizza__item:last-child {
+  padding: 0;
+  margin-right: 0;
+}
+
+.catalog-pizza__img {
+  margin-bottom: 17px;
+  width: 400px;
+  height: auto;
+}
+
+.catalog-pizza__name {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 36px;
+  color: #273617;
+  margin: 0;
+  margin-bottom: 18px;
+}
+
+.catalog-pizza__info {
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 20px;
+  color: #273617;
+  margin: 0;
+  margin-bottom: 47px;
+}
+.catalog-pizza__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.catalog-pizza__price {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #273617;
+  margin: 0;
+}
+
+.catalog-pizza__chose {
+  display: block;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  text-decoration: none;
+  color: #bc6c25;
+}
+
+/*Верстка подробной информации о продукте(Пицца)*/
+.chose-pizza {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  padding: 10% 0;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.chosePizza-content {
+  /* background: url(/img/chosePizza.png) no-repeat right bottom; */
+  background-color: #e5e4d6;
+  margin: 0 auto;
+  padding: 20px;
+  width: 1082px;
+  height: 723px;
+  border-radius: 60px;
+  overflow: hidden;
+}
+.pizza-background {
+  position: relative;
+  z-index: 1;
+  height: 600px;
+  left: 55%;
+  top: 25%;
+}
+
+.chosePizza-content-content {
+  position: relative;
+  z-index: 2;
+  top: -600px;
+}
+
+.closeChose-pizza {
+  float: right;
+}
+
+.closeChose-pizza:hover,
+.closeChose-pizza:focus {
+  cursor: pointer;
+}
+
+.chosePizza-content__name {
+  margin: 0;
+  margin-left: 53px;
+  margin-top: 48px;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 83px;
+  color: #bc6c25;
+}
+
+.chosePizza-content__ingredient {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  margin: 0;
+  color: #898881;
+  margin-left: 53px;
+  margin-bottom: 19px;
+  max-width: 55%;
+}
+
+.chosePizza-ingredient {
+  margin-left: 53px;
+  max-width: 55%;
+  margin-bottom: 31px;
+}
+
+.chosePizza-ingredient span {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  margin: 0;
+  color: #898881;
+}
+
+.chosePizza-ingredient__info {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 29px;
+  margin: 0;
+  color: #273617;
+}
+
+.chosePizza__parametrs {
+  max-width: 50%;
+  margin-left: 52px;
+}
+
+.chosePizza-content__size {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.chosePizza-content__size a {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #141414;
+  text-decoration: none;
+}
+
+.chosePizza-content__view {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.chosePizza-content__view a {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #141414;
+  text-decoration: none;
+}
+
+.chosePizza-content__counter {
+  display: flex;
+  max-width: 156px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 53px;
+  margin-bottom: 20px;
+}
+
+.chosePizza-content__counter p {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 42px;
+  margin: 0;
+}
+
+.chosePizza-content__end {
+  text-decoration: none;
+  display: block;
+  margin-left: 53px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 47px;
+  color: #bc6c25;
+}
+
+/*Верстка подробной инофрмации о продукте(напиток)*/
+.chose-drinks {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  padding: 10% 0;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.choseDrinks-content {
+  background: url(/img/choseDrinks2.png) no-repeat right 250px,
+    url(/img/choseDrinks1.png) no-repeat right 200px,
+    url(/img/choseDrinks3.png) no-repeat 620px 200px;
+  background-color: #e5e4d6;
+  margin: 0 auto;
+  padding: 20px;
+  width: 1082px;
+  height: 700px;
+  border-radius: 60px;
+}
+
+.closeChose-drinks {
+  float: right;
+}
+
+.closeChose-drinks:hover,
+.closeChose-drinks:focus {
+  cursor: pointer;
+}
+
+.choseDrinks-content__name {
+  margin: 0;
+  margin-left: 53px;
+  margin-top: 48px;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 83px;
+  color: #bc6c25;
+}
+
+.choseDrinks-content__ingredient {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  margin: 0;
+  color: #898881;
+  margin-left: 53px;
+  margin-bottom: 19px;
+  max-width: 55%;
+}
+
+.choseDrinks-ingredient {
+  margin-left: 53px;
+  max-width: 55%;
+  margin-bottom: 31px;
+}
+
+.choseDrinks-ingredient span {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  margin: 0;
+  color: #898881;
+}
+
+.choseDrinks-ingredient__info {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 29px;
+  margin: 0;
+  color: #273617;
+  margin-bottom: 18px;
+}
+
+.choseDrinks__parametrs {
+  max-width: 50%;
+  margin-left: 52px;
+}
+
+.choseDrinks-content__size {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.choseDrinks-content__size a {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #141414;
+  text-decoration: none;
+}
+
+.choseDrinks-content__view {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.choseDrinks-content__view a {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #141414;
+  text-decoration: none;
+}
+
+.choseDrinks-content__counter {
+  display: flex;
+  max-width: 156px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 53px;
+  margin-bottom: 20px;
+}
+
+.choseDrinks-content__counter p {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 42px;
+  margin: 0;
+}
+
+.choseDrinks-content__end {
+  text-decoration: none;
+  display: block;
+  margin-left: 53px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 47px;
+  color: #bc6c25;
+}
+
+/*Верстка выбора напитка (каталог)*/
+
+.catalog-drinks__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catalog-drinks__item {
+  padding: 37px 53px 8px;
+  margin-right: 39px;
+}
+
+.catalog-drinks__item:first-child {
+  padding: 0;
+}
+
+.catalog-drinks__item:last-child {
+  padding: 0;
+  margin-right: 0;
+}
+
+.catalog-drinks__img {
+  margin-bottom: 17px;
+  width: 400px;
+  height: 400px;
+}
+
+.catalog-drinks__name {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 36px;
+  color: #273617;
+  margin: 0;
+  margin-bottom: 18px;
+}
+
+.catalog-drinks__info {
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 20px;
+  color: #273617;
+  margin: 0;
+  margin-bottom: 47px;
+}
+
+.catalog-drinks__bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.catalog-drinks__price {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #273617;
+  margin: 0;
+}
+
+.catalog-drinks__chose {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  text-decoration: none;
+  color: #bc6c25;
+}
+
+/*Верстка корзины заказа*/
+
+.shop-basket {
+  padding: 0 93px;
+}
+
+.shop-name {
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 83px;
+  color: #273617;
+  margin: 0;
+  margin-bottom: 57px;
+}
+
+.shop-item {
+  max-width: 1192px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 21px;
+  border-bottom: 4px #14141480 solid;
+  margin: 0;
+  margin-bottom: 57px;
+}
+
+.shop-item:last-child {
+  max-width: 641px;
+  padding: 0;
+  padding-bottom: 12px;
+  padding-left: 21px;
+}
+
+.shop-item input {
+  min-width: 395px;
+  height: 62px;
+  font-size: 48px;
+  background: transparent;
+  border: none;
+  margin: 0;
+  color: #273617b2;
+}
+
+.shop-item__img {
+  width: 270px;
+  height: 270px;
+  margin-right: 28px;
+}
+
+.shop-element {
+  width: 593px;
+  margin-right: 205px;
+}
+
+.shop-element__name {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 330;
+  line-height: 62px;
+  color: #273617;
+}
+
+.shop-element__info {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 330;
+  line-height: 47px;
+  margin-bottom: 35px;
+}
+
+.shop-element__finaly {
+  display: flex;
+}
+
+.shop-element__price {
+  margin: 0;
+  margin-right: 75px;
+  font-size: 48px;
+  font-weight: 330;
+  line-height: 62px;
+}
+
+.shop-element__count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 30px;
+}
+
+.counter {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 330;
+  line-height: 62px;
+  color: #273617;
+}
+
+/*Верстка итоговой оплаты (каталог)*/
+.shop-result {
+  padding: 0 93px;
+}
+
+.result-count {
+  font-size: 36px;
+  font-weight: 330;
+  line-height: 47px;
+  color: #273617;
+  margin: 0;
+}
+
+.payments {
+  max-width: 1192px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 44px;
+}
+
+.payments h2 {
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 83px;
+  margin: 0;
+}
+
+.payments-result {
+  font-size: 48px;
+  font-weight: 330;
+  line-height: 62px;
+  margin: 0;
+}
+
+.result-submit {
+  font-size: 48px;
+  font-weight: 330;
+  line-height: 62px;
+  color: #bc6c25;
+  text-decoration: none;
+  text-align: end;
+}
+
+.result-submit img {
+  margin-left: 14px;
+}
+
+/*Верстка выбора состава*/
+
+.structure-choice {
+  padding: 0 84px;
+  margin-bottom: 127px;
+}
+
+.structure-pizza__list {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.stucture-pizza__link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #273617;
+}
+
+.stucture-pizza__link img {
+  width: 67px;
+  height: 67px;
+  margin-bottom: 16px;
+}
+
+.stucture-pizza__link p {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+/*Верстка элемента выбора состава*/
+
+.structure-element {
+  padding: 0 84px;
+}
+
+.structure-element h2 {
+  margin: 0;
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 125px;
+  color: #bc6c25;
+  margin-bottom: 55px;
+}
+
+.section--spices {
+  box-sizing: content-box;
+  max-width: 1540px;
+
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.section--spices .section__content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+
+.spices-left {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+.spices-left .card:nth-of-type(1) {
+  grid-column: 2;
+}
+.spices-left .card:nth-of-type(2) {
+  grid-column: 1;
+  transform: translateY(-73px);
+}
+.spices-left .card:nth-of-type(3) {
+  grid-column: 2;
+  grid-row: 3;
+  transform: translateY(-73px);
+}
+
+.spices-right {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+.spices-right .card:nth-of-type(1) {
+  grid-column: 1;
+}
+.spices-right .card:nth-of-type(2) {
+  grid-column: 2;
+  grid-row: 2;
+  transform: translateY(-73px);
+}
+.spices-right .card:nth-of-type(3) {
+  grid-column: 1;
+  grid-row: 3;
+  transform: translateY(-73px);
+}
+
+.card--spices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-size: 28px;
+}
+
+.card--spices .card__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.card--spices.card__title {
+  color: #273617;
+}
+
+.card--spices .card__weight {
+  color: #141414;
+}
+
+.card--spices-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 40px;
+}
+
+.card--spices-main .card__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  margin-bottom: 25px;
+}
+
+.card--spices-main .card__disclaimer {
+  margin-bottom: 9px;
+  font-size: 24px;
+  color: #898881;
+  text-align: center;
+}
+
+.card--spices-main .card__weight {
+  margin-bottom: 30px;
+
+  font-size: 40px;
+  color: #273617;
+}
+
+.card--spices-main .card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Kreadon", sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: #bc6c25;
+
+  border: 0;
+  background: none;
+
+  cursor: pointer;
+}
