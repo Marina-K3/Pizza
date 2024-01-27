@@ -25,19 +25,12 @@ public class BucketItem {
     @Transient
     private Double itemPrice;
 
-    public Double getItemPrice() {
-        return quantity * productVariant.getProductVariantPrice();
-    }
 
     public BucketItem(){
 
     }
 
-    public BucketItem(int quantity, Bucket bucket, Product product, ProductVariant productVariant) {
-        this.quantity = quantity;
-        this.bucket = bucket;
-        this.product = product;
-    }
+
 
     public int getId() {
         return id;
