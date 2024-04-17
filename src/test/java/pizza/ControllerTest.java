@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import pizza.controllers.ShowController;
+import pizza.dto.ProductDTO;
+import pizza.dto.ShowDTO;
 
 import java.util.List;
 
