@@ -1,80 +1,28 @@
 package pizza.models;
 
-import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "bucket")
+@Table(name = "buckets")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Bucket {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @OneToOne()
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
-    private Client client;
+    //одностор связь
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "bucket", orphanRemoval = true)
+    private List<ProductItems> productItems;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdTime;
+    @Transient
+    private Double bucketPrice;
 
-    @Column
-    private String status;
-
-    @OneToMany(mappedBy = "bucket", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private Set<BucketItem> bucketItemSet;
-
-    public Bucket(){
-
-    }
-
-    public Bucket(Client client, LocalDateTime createdTime, HashSet<BucketItem> bucketItemSet, String status) {
-        this.client = client;
-        this.createdTime = createdTime;
-        this.bucketItemSet = bucketItemSet;
-        this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public LocalDateTime getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(LocalDateTime createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Set<BucketItem> getBucketItemSet() {
-        return bucketItemSet;
-    }
-
-    public void setBucketItemSet(Set<BucketItem> bucketItemSet) {
-        this.bucketItemSet = bucketItemSet;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
