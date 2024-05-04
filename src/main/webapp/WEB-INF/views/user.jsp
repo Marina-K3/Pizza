@@ -6,10 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Пользователь</title>
+    <title>Администратор</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -41,73 +42,97 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="/"><span class="flaticon-pizza-1 mr-1"></span>BSUIR<br><small>Tempo</small></a>
+        <a class="navbar-brand"><span class="flaticon-pizza-1 mr-1"></span>${user.firstName}<br><small>администратор</small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="/" class="nav-link">Главная</a></li>
-                <li class="nav-item"><a href="/menu" class="nav-link">Меню</a></li>
-                <li class="nav-item"><a href="/log" class="nav-link">Авторизация</a></li>
+                <li class="nav-item"><a href="/user/menu" class="nav-link">Меню</a></li>
+                <li class="nav-item"><a href="/user/orders" class="nav-link">Заказы</a></li>
+                <li class="nav-item"><a href="/user/comments" class="nav-link">Комментарии</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link">Выйти</a></li>
 
-                <li class="nav-item"><a href="/reg" class="nav-link">Регистрация</a></li>
-                <%--                <li class="nav-item"><a href="about.html" class="nav-link">О нас</a></li>--%>
-                <%--                <li class="nav-item"><a href="contact.html" class="nav-link">Контакты</a></li>--%>
             </ul>
         </div>
     </div>
 </nav>
 
 <section class="ftco-appointment">
-    <div class="overlay"></div>
-    <div class="container-wrap">
-        <div class="row no-gutters d-md-flex align-items-center">
 
-            <div class="col-md-6 appointment ftco-animate" style="margin-left: 30%">
-                <h3 class="mb-3">Регистрация</h3>
-                <form action="/reg" class="appointment-form" method="post" enctype="multipart/form-data">
+    <div class="container-wrap" style="padding: 50px;">
+
+        <div style=" display: flex; justify-content: center;">
+            <div class="staff" style=" width: 20%; margin-right: 50px;">
+                <div class="img mb-4">
+                    <img class="img mb-4" src = "/image/${user.image.id}">
+                </div>
+                <div class="info text-center">
+                    <h2>${user.firstName} ${user.lastName}</h2>
+                    <h5>${user.phone}</h5>
+                    <h5>логин: ${user.login}</h5>
+                    <span class="position"></span>
+                    <div class="text">
+                        <p>У вас ${user.points.quantity} бонусов, что эквивалентно ${user.points.quantity} BYN. С каждым заказом кол-во персональных бонусов возрастает</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <h3 class="mb-3">Редактирование</h3>
+                <form action="/editProfile" class="appointment-form" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <div class="d-md-flex">
                         <div class="form-group">
-                            <input type="text" name="lastName" class="form-control" placeholder="Фамилия" required>
+                            <input type="text" name="lastName" class="form-control" placeholder="Фамилия" required value="${user.lastName}">
                         </div>
                     </div>
+
                     <div class="d-me-flex">
                         <div class="form-group">
-                            <input type="text" name="firstName" class="form-control" placeholder="Имя" required>
+                            <input type="text" name="firstName" class="form-control" placeholder="Имя" required value="${user.firstName}">
                         </div>
                     </div>
+
                     <div class="d-me-flex">
                         <div class="form-group">
-                            <input type="tel" name="phone" class="form-control" placeholder="Телефон" required>
+                            <input type="tel" name="phone" class="form-control" placeholder="Телефон" required value="${user.phone}">
                         </div>
                     </div>
+
                     <div class="d-me-flex">
                         <div class="form-group">
-                            <input type="text" name="login" class="form-control" placeholder="Логин" required>
+                            <input type="text" name="login" class="form-control" placeholder="Логин" required value="${user.login}">
                         </div>
                     </div>
+
                     <div class="d-me-flex">
                         <div class="form-group">
                             <input type="password" name="password" class="form-control" placeholder="Пароль" required>
                         </div>
                     </div>
+
                     <div class="d-me-flex">
                         <div class="form-group">
-                            <input  required type="file" name="image" accept="image/jpeg">
+                            <input required type="file" name="image" accept="image/jpeg">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Регистрация" class="btn btn-primary py-3 px-4">
+                        <input type="submit" value="Редактирование" class="btn btn-primary py-3 px-4">
                     </div>
+
                 </form>
             </div>
         </div>
-    </div>
-</section>
 
+    </div>
+
+
+
+
+</section>
 
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

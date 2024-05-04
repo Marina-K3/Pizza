@@ -1,8 +1,10 @@
 package pizza.services;
 import org.springframework.web.multipart.MultipartFile;
 import pizza.models.Image;
+import pizza.models.Point;
 import pizza.models.User;
 import pizza.repositories.ImageRepository;
+import pizza.repositories.PointRepository;
 import pizza.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,8 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final PointRepository pointRepository;
+
     public boolean createUser(MultipartFile img, String lastName, String firstName, String phone, String login, String password) throws IOException {
         if (userRepository.findByLogin(login) != null) return false;
         User user = new User();
@@ -35,6 +39,10 @@ public class UserService {
         user.setLastName(lastName);
         user.setPhone(phone);
         user.setLogin(login);
+        Point point = new Point();
+        point.setQuantity(0);
+        pointRepository.save(point);
+        user.setPoints(point);
         Image image = new Image();
         image.setImageData(img.getBytes());
         imageRepository.save(image);
