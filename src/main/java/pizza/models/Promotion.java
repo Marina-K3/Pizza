@@ -28,11 +28,13 @@ public class Promotion {
 
     private int max_points;
 
-    @Column(name = "is_active")
-    private boolean isActive;
+    private boolean active;
 
-    @ManyToMany(mappedBy = "promotions")
+    @ManyToMany(mappedBy = "promotions", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL})
     private List<User> users;
 
-
+    public void removeUser(User user) {
+        users.remove(user);
+        user.getPromotions().remove(this);
+    }
 }

@@ -136,4 +136,8 @@ public class UserService {
         userRepository.save(user);
 
     }
+
+    public List<User> getUsersByIds(List<Long> userIds) {
+        return userRepository.findAllById(userIds);
+    }
 }

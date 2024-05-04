@@ -48,7 +48,7 @@ public class User {
     @JoinColumn(name = "point_id")
     private Point points;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL})
     @JoinTable(
             name = "user_promotions",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -57,5 +57,10 @@ public class User {
     private List<Promotion> promotions;
 
 
+
+    public void removePromotion(Promotion promotion) {
+        promotions.remove(promotion);
+        promotion.getUsers().remove(this);
+    }
 }
 

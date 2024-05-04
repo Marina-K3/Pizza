@@ -65,73 +65,83 @@
   <div class="container">
     <div class="row justify-content-center mb-5 pb-3">
       <div class="col-md-7 heading-section ftco-animate text-center">
-        <h2 class="mb-4">Меню</h2>
-        <p>Здесь вы можете работать с едой и напитками</p>
+        <h2 class="mb-4">Акции для пользователей</h2>
+        <p>Здесь вы можете создавать, удалять, активировать и разактивировать акции</p>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="row justify-content-center mb-5 pb-3">
       <div class="col-md-7 heading-section ftco-animate text-center">
-        <h2 class="mb-4">Пиццы</h2>
+        <h2 class="mb-4">Активные</h2>
       </div>
     </div>
   </div>
 
   <div class="container-wrap">
     <div class="row no-gutters d-flex">
-      <c:forEach var="product" items="${products}">
-        <c:if test="${product.type eq 'pizza'}">
+      <c:forEach var="promo" items="${promos}">
+        <c:if test="${promo.active}">
 
           <div class="col-lg-4 d-flex ftco-animate">
             <div class="services-wrap d-flex">
 
-                <img src="/image/${product.image.id}" class="img">
+              <img src="/static/images/sale.png" class="img">
 
               <div class="text p-4">
-                <h3>${product.productName}</h3>
-                <p>${product.productDescription}</p>
-                <p class="price"><span>${product.basePrice}</span> <a href="/admin/deleteProduct/${product.id}" class="ml-2 btn btn-white btn-outline-white">Удалить</a></p>
+                <h3>${promo.name}</h3>
+                <h4>скидка <span>${promo.discount}%</span></h4>
+                <h4>промокод - ${promo.promocode}</h4>
+                <p>для тех у кого от ${promo.min_points} до ${promo.max_points} баллов</p>
+                <p>${promo.description}</p>
+                <p>
+                  <a href="/admin/deletePromo/${promo.id}" class="ml-2 btn btn-white btn-outline-white">Удалить</a>
+                  <a href="/admin/deactivatePromo/${promo.id}" class="ml-2 btn btn-white btn-outline-white">Разактивировать</a>
+                </p>
               </div>
             </div>
           </div>
-
         </c:if>
       </c:forEach>
-        </div>
-      </div>
+    </div>
+  </div>
 
 
   <div class="container" style="margin-top: 90px">
     <div class="row justify-content-center mb-5 pb-3">
       <div class="col-md-7 heading-section ftco-animate text-center">
-        <h2 class="mb-4">Напитки</h2>
+        <h2 class="mb-4">Не активные</h2>
       </div>
     </div>
   </div>
 
   <div class="container-wrap">
     <div class="row no-gutters d-flex">
-      <c:forEach var="product" items="${products}">
-        <c:if test="${product.type eq 'drink'}">
+      <c:forEach var="promo" items="${promos}">
+        <c:if test="${not promo.active}">
 
           <div class="col-lg-4 d-flex ftco-animate">
             <div class="services-wrap d-flex">
 
-                <img class="img" src="/image/${product.image.id}">
+              <img src="/static/images/sale.png" class="img">
 
               <div class="text p-4">
-                <h3>${product.productName}</h3>
-                <p>${product.productDescription}</p>
-                <p class="price"><span>${product.basePrice}</span> <a href="/admin/deleteProduct/${product.id}" class="ml-2 btn btn-white btn-outline-white">Удалить</a></p>
+                <h3>${promo.name}</h3>
+                <h2>скидка <span>${promo.discount}%</span></h2>
+                <h2>промокод - ${promo.promocode}</h2>
+                <p>для тех у кого от ${promo.min_points} до ${promo.max_points} баллов</p>
+                <p>${promo.description}</p>
+                <p>
+                  <a href="/admin/deletePromo/${promo.id}" class="ml-2 btn btn-white btn-outline-white">Удалить</a>
+                  <a href="/admin/activatePromo/${promo.id}" class="ml-2 btn btn-white btn-outline-white">Активировать</a>
+                </p>
               </div>
             </div>
           </div>
-
         </c:if>
       </c:forEach>
-        </div>
-      </div>
+    </div>
+  </div>
 </section>
 
 
@@ -141,35 +151,37 @@
     <div class="row no-gutters d-md-flex align-items-center">
 
       <div class="col-md-6 appointment ftco-animate" style="margin-left: 30%">
-        <h3 class="mb-3">Добавление еды</h3>
-        <form action="/admin/addProduct" class="appointment-form" method="post" enctype="multipart/form-data">
+        <h3 class="mb-3">Добавление акции</h3>
+        <form action="/admin/addPromo" class="appointment-form" method="post">
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
           <div class="d-md-flex">
             <div class="form-group">
-              <input type="text" name="productName" class="form-control" placeholder="Название продукта" required>
+              <input type="text" name="name" class="form-control" placeholder="Название" required>
             </div>
           </div>
           <div class="d-me-flex">
             <div class="form-group">
-              <input type="text" name="productDescription" class="form-control" placeholder="Описание" required>
-            </div>
-          </div>
-          <div class="d-md-flex">
-            <div class="form-group">
-              <select name="type" class="form-control" required>
-                <option value="pizza">Пицца</option>
-                <option value="drink">Напиток</option>
-              </select>
-            </div>
-          </div>
-          <div class="d-md-flex">
-            <div class="form-group">
-              <input type="number" step="0.01" name="basePrice" class="form-control" placeholder="Базовая цена" required>
+              <input type="text" name="description" class="form-control" placeholder="Описание" required>
             </div>
           </div>
           <div class="d-me-flex">
             <div class="form-group">
-              <input  required type="file" name="image" accept="image/jpeg">
+              <input type="text" name="promocode" class="form-control" placeholder="Прoмокод" required>
+            </div>
+          </div>
+          <div class="d-md-flex">
+            <div class="form-group">
+              <input type="number" step="1" name="discount" class="form-control" placeholder="Скидка в процентах" required>
+            </div>
+          </div>
+          <div class="d-md-flex">
+            <div class="form-group">
+              <input type="number" step="1" name="min_points" class="form-control" placeholder="От этого кол-ва баллов" required>
+            </div>
+          </div>
+          <div class="d-md-flex">
+            <div class="form-group">
+              <input type="number" step="1" name="max_points" class="form-control" placeholder="До этого кол-ва баллов (включая)" required>
             </div>
           </div>
 

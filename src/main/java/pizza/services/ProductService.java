@@ -36,5 +36,9 @@ public class ProductService {
         product.setBasePrice(basePrice);
         productRepository.save(product);
     }
+
+    public void deleteProductById(Long id) {
+        productRepository.deleteById(id);
+    }
 }
 

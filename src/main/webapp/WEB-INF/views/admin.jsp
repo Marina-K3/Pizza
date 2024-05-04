@@ -48,9 +48,10 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="/admin/menu" class="nav-link">Меню</a></li>
+                <li class="nav-item"><a href="/profile" class="nav-link">Профиль</a></li>
+                <li class="nav-item"><a href="/admin/menu" class="nav-link">Меню</a></li>
                     <li class="nav-item"><a href="/admin/orders" class="nav-link">Заказы</a></li>
-                <li class="nav-item"><a href="/admin/promotions" class="nav-link">Акции</a></li>
+                <li class="nav-item"><a href="/admin/promos" class="nav-link">Акции</a></li>
                 <li class="nav-item"><a href="/admin/accounts" class="nav-link">Аккаунты</a></li>
                 <li class="nav-item"><a href="/admin/comments" class="nav-link">Отзывы</a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link">Выйти</a></li>
