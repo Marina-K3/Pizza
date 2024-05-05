@@ -106,4 +106,48 @@ public class AdminController {
         return "redirect:/admin/promos";
     }
 
+//
+//    @GetMapping("/admin/comments")
+//    public  String adminComments(Model model){
+//        model.addAttribute("comments", commentService.listComment());
+//        return "admin-comments";
+//    }
+
+    @GetMapping("/admin/accounts")
+    public  String users(Model model, Principal principal){
+        User user = userService.getUserByPrincipal(principal);
+        model.addAttribute("admin", user);
+        model.addAttribute("users", userService.list());
+        return "admin-accounts";
+    }
+
+    @GetMapping("/admin/accounts/ban/{id}")
+    public  String userBan(@PathVariable("id") Long id, Model model){
+        userService.banUser(id);
+        model.addAttribute("users", userService.list());
+        return "admin-accounts";
+    }
+
+
+    @GetMapping("/admin/accounts/setRole/{id}")
+    public  String userSetRole(@PathVariable("id") Long id, Model model){
+        userService.setRole(id);
+        model.addAttribute("users", userService.list());
+        return "admin-accounts";
+    }
+
+    @PostMapping("/admin/createUser")
+    public String AdminCreateUser(@RequestParam("image") MultipartFile img,
+                                  @RequestParam("lastName") String lastName,
+                                  @RequestParam("firstName") String firstName,
+                                  @RequestParam("phone") String phone,
+                                  @RequestParam("login") String login,
+                                  @RequestParam("password") String password) throws IOException {
+        if (userService.createUser(img, lastName, firstName, phone, login, password)) {
+            return "redirect:/admin/accounts";
+        }
+        return "redirect:/profile";
+    }
+
+
 }

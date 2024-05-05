@@ -30,11 +30,7 @@ public class Promotion {
 
     private boolean active;
 
-    @ManyToMany(mappedBy = "promotions", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL})
+    @ManyToMany(mappedBy = "promotions")
     private List<User> users;
 
-    public void removeUser(User user) {
-        users.remove(user);
-        user.getPromotions().remove(this);
-    }
 }

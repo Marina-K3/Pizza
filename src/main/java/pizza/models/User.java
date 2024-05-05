@@ -48,19 +48,14 @@ public class User {
     @JoinColumn(name = "point_id")
     private Point points;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_promotions",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "promotion_id")
+             inverseJoinColumns = @JoinColumn(name = "promotion_id")
     )
     private List<Promotion> promotions;
 
 
-
-    public void removePromotion(Promotion promotion) {
-        promotions.remove(promotion);
-        promotion.getUsers().remove(this);
-    }
 }
 

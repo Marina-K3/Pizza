@@ -86,12 +86,12 @@
           <div class="col-lg-4 d-flex ftco-animate">
             <div class="services-wrap d-flex">
 
-              <img src="/static/images/sale.png" class="img">
+              <img src="/static/images/sale1.png" class="img">
 
               <div class="text p-4">
                 <h3>${promo.name}</h3>
-                <h4>скидка <span>${promo.discount}%</span></h4>
-                <h4>промокод - ${promo.promocode}</h4>
+                <h5>скидка <span>${promo.discount}%</span></h5>
+                <h5>промокод - ${promo.promocode}</h5>
                 <p>для тех у кого от ${promo.min_points} до ${promo.max_points} баллов</p>
                 <p>${promo.description}</p>
                 <p>
@@ -127,8 +127,8 @@
 
               <div class="text p-4">
                 <h3>${promo.name}</h3>
-                <h2>скидка <span>${promo.discount}%</span></h2>
-                <h2>промокод - ${promo.promocode}</h2>
+                <h5>скидка <span>${promo.discount}%</span></h5>
+                <h5>промокод - ${promo.promocode}</h5>
                 <p>для тех у кого от ${promo.min_points} до ${promo.max_points} баллов</p>
                 <p>${promo.description}</p>
                 <p>

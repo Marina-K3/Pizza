@@ -4,11 +4,15 @@ package pizza.services;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pizza.models.Promotion;
 import pizza.models.User;
 import pizza.repositories.PromotionRepository;
 import pizza.repositories.UserRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +24,8 @@ public class PromotionService {
     private final PromotionRepository promotionRepository;
     private final UserRepository userRepository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public void createPromotion(String name, String description, String promocode, int min, int max, int discount) {
 
@@ -61,15 +67,17 @@ public class PromotionService {
             promotionRepository.save(promotion);
         }
     }
+    @Transactional
     public void deletePromotion(Long promotionId) {
         Promotion promotion = promotionRepository.findById(promotionId).orElse(null);
         if (promotion != null) {
-            for (User user : promotion.getUsers()) {
-                user.removePromotion(promotion);
-                userRepository.save(user);
-            }
-            promotion.getUsers().clear();
+            Query query = entityManager.createNativeQuery("DELETE FROM user_promotions WHERE promotion_id = :promotionId");
+            query.setParameter("promotionId", promotionId);
+            query.executeUpdate();
+
             promotionRepository.delete(promotion);
         }
+            promotionRepository.delete(promotion);
     }
+
 }

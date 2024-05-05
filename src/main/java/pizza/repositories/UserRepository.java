@@ -11,5 +11,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User getUserById(Long id);
     boolean existsByLogin(String login);
     List<User> findByPointsQuantityBetween(int min, int max);
+//    List<User> findUsersByPromotionId(long id);
 
 }
