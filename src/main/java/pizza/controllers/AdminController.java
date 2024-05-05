@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import pizza.models.User;
+import pizza.services.CommentService;
 import pizza.services.ProductService;
 import pizza.services.PromotionService;
 import pizza.services.UserService;
@@ -24,6 +25,8 @@ public class AdminController {
     private final UserService userService;
     private final ProductService productService;
     private final PromotionService promoService;
+    private final CommentService commentService;
+
 
     @GetMapping("/admin/menu")
     public String showUserProfile(Model model, Principal principal) {
@@ -106,12 +109,30 @@ public class AdminController {
         return "redirect:/admin/promos";
     }
 
-//
-//    @GetMapping("/admin/comments")
-//    public  String adminComments(Model model){
-//        model.addAttribute("comments", commentService.listComment());
-//        return "admin-comments";
-//    }
+
+    @GetMapping("/admin/comments")
+    public  String adminComments(Model model, Principal principal){
+        User user = userService.getUserByPrincipal(principal);
+        model.addAttribute("admin", user);
+        model.addAttribute("comments", commentService.listComment());
+        return "admin-comments";
+    }
+
+    @PostMapping("/admin/addComment")
+    public String addComment(
+            @RequestParam("comment") String comment, Principal principal){
+        User user = userService.getUserByPrincipal(principal);
+        commentService.createComment(comment, user);
+        return "redirect:/admin/comments";
+    }
+
+    @GetMapping("/admin/deleteComment/{id}")
+    public String deleteComment(@PathVariable("id") Long id)
+    {
+
+        commentService.deleteComment(id);
+        return "redirect:/admin/comments";
+    }
 
     @GetMapping("/admin/accounts")
     public  String users(Model model, Principal principal){
@@ -122,16 +143,21 @@ public class AdminController {
     }
 
     @GetMapping("/admin/accounts/ban/{id}")
-    public  String userBan(@PathVariable("id") Long id, Model model){
+    public  String userBan(@PathVariable("id") Long id, Model model, Principal principal){
+        User user = userService.getUserByPrincipal(principal);
+
         userService.banUser(id);
+        model.addAttribute("admin", user);
         model.addAttribute("users", userService.list());
         return "admin-accounts";
     }
 
 
     @GetMapping("/admin/accounts/setRole/{id}")
-    public  String userSetRole(@PathVariable("id") Long id, Model model){
+    public  String userSetRole(@PathVariable("id") Long id, Model model, Principal principal){
+        User user = userService.getUserByPrincipal(principal);
         userService.setRole(id);
+        model.addAttribute("admin", user);
         model.addAttribute("users", userService.list());
         return "admin-accounts";
     }

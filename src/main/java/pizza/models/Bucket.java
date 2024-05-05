@@ -22,7 +22,7 @@ public class Bucket {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "bucket", orphanRemoval = true)
     private List<ProductItems> productItems;
 
-    @Transient
+
     private Double bucketPrice;
 
 }

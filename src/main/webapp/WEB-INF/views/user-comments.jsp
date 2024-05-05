@@ -60,82 +60,65 @@
     </div>
 </nav>
 
-<section class="ftco-appointment">
 
-    <div class="container-wrap" style="padding: 50px;">
+<section class="ftco-section">
 
-        <div style=" display: flex; justify-content: center;">
-            <div class="staff" style=" width: 20%; margin-right: 50px;">
-                <div class="img mb-4">
-                    <img class="img mb-4" src = "/image/${user.image.id}">
-                </div>
-                <div class="info text-center">
-                    <h2>${user.firstName} ${user.lastName}</h2>
-                    <h5>${user.phone}</h5>
-                    <h5>логин: ${user.login}</h5>
-                    <span class="position"></span>
-                    <div class="text">
-                        <p>У вас ${user.points.quantity} бонусов, что эквивалентно ${user.points.quantity} BYN. С каждым заказом кол-во персональных бонусов возрастает</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div>
-                <h3 class="mb-3">Редактирование</h3>
-                <form action="/editProfile" class="appointment-form" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    <div class="d-md-flex">
-                        <div class="form-group">
-                            <input type="text" name="lastName" class="form-control" placeholder="Фамилия" required value="${user.lastName}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="text" name="firstName" class="form-control" placeholder="Имя" required value="${user.firstName}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="tel" name="phone" class="form-control" placeholder="Телефон" required value="${user.phone}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="text" name="login" class="form-control" placeholder="Логин" required value="${user.login}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control" placeholder="Пароль" required>
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input required type="file" name="image" accept="image/jpeg">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Редактирование" class="btn btn-primary py-3 px-4">
-                    </div>
-
-                </form>
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3 mt-1 pt-1">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Отзывы</h2>
+                <p class="flip"><span class="deg1"></span><span class="deg2"></span><span class="deg3"></span></p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <c:forEach var="comment" items="${comments}">
+                    <div class="pricing-entry d-flex ftco-animate">
+                        <img class="img" src="/image/${comment.user.image.id}">
 
+                        <div class="desc pl-3">
+                            <div class="d-flex text align-items-center">
+                                <h3><span>${comment.user.firstName} ${comment.user.lastName}</span></h3>
+                                <c:if test="${user.id == comment.user.id}">
+                                <a href="/user/deleteComment/${comment.id}" class="mb-4 btn btn-white btn-outline-white">Удалить</a></p>
+                                </c:if>
+                            </div>
+                            <div class="d-block">
+                                <p>${comment.comment}</p>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
     </div>
-
-
-
-
+    <div class="container">
+        <p></p>
+    </div>
 </section>
 
+<section class="ftco-appointment">
+    <div class="overlay"></div>
+    <div class="container-wrap">
+        <div class="row no-gutters d-md-flex align-items-center">
+
+            <div class="col-md-6 appointment ftco-animate" style="margin-left: 30%">
+                <h3 class="mb-3">Оставьте свой отзыв</h3>
+                <%--                форма--%>
+                <form action="/user/addComment" class="contact-form" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    <div class="form-group">
+                        <textarea name="comment"  cols="30" rows="4" class="form-control" placeholder="Комментарий"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Отправить комментарий" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

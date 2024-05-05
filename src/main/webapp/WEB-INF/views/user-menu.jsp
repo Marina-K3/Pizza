@@ -60,80 +60,77 @@
     </div>
 </nav>
 
-<section class="ftco-appointment">
-
-    <div class="container-wrap" style="padding: 50px;">
-
-        <div style=" display: flex; justify-content: center;">
-            <div class="staff" style=" width: 20%; margin-right: 50px;">
-                <div class="img mb-4">
-                    <img class="img mb-4" src = "/image/${user.image.id}">
-                </div>
-                <div class="info text-center">
-                    <h2>${user.firstName} ${user.lastName}</h2>
-                    <h5>${user.phone}</h5>
-                    <h5>логин: ${user.login}</h5>
-                    <span class="position"></span>
-                    <div class="text">
-                        <p>У вас ${user.points.quantity} бонусов, что эквивалентно ${user.points.quantity} BYN. С каждым заказом кол-во персональных бонусов возрастает</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div>
-                <h3 class="mb-3">Редактирование</h3>
-                <form action="/editProfile" class="appointment-form" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    <div class="d-md-flex">
-                        <div class="form-group">
-                            <input type="text" name="lastName" class="form-control" placeholder="Фамилия" required value="${user.lastName}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="text" name="firstName" class="form-control" placeholder="Имя" required value="${user.firstName}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="tel" name="phone" class="form-control" placeholder="Телефон" required value="${user.phone}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="text" name="login" class="form-control" placeholder="Логин" required value="${user.login}">
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input type="password" name="password" class="form-control" placeholder="Пароль" required>
-                        </div>
-                    </div>
-
-                    <div class="d-me-flex">
-                        <div class="form-group">
-                            <input required type="file" name="image" accept="image/jpeg">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Редактирование" class="btn btn-primary py-3 px-4">
-                    </div>
-
-                </form>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Меню</h2>
+                <p>Здесь вы можете положить в корзину понравившиеся еду и напитки</p>
             </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Пиццы</h2>
+            </div>
+        </div>
+    </div>
 
+    <div class="container-wrap">
+        <div class="row no-gutters d-flex">
+            <c:forEach var="product" items="${products}">
+                <c:if test="${product.type eq 'pizza'}">
+
+                    <div class="col-lg-4 d-flex ftco-animate">
+                        <div class="services-wrap d-flex">
+
+                            <img src="/image/${product.image.id}" class="img">
+
+                            <div class="text p-4">
+                                <h3>${product.productName}</h3>
+                                <p>${product.productDescription}</p>
+                                <p class="price"><span>${product.basePrice}</span> <a href="/user/addProduct/${product.id}" class="ml-2 btn btn-white btn-outline-white">В корзину</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </c:if>
+            </c:forEach>
+        </div>
     </div>
 
 
+    <div class="container" style="margin-top: 90px">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Напитки</h2>
+            </div>
+        </div>
+    </div>
 
+    <div class="container-wrap">
+        <div class="row no-gutters d-flex">
+            <c:forEach var="product" items="${products}">
+                <c:if test="${product.type eq 'drink'}">
 
+                    <div class="col-lg-4 d-flex ftco-animate">
+                        <div class="services-wrap d-flex">
+
+                            <img class="img" src="/image/${product.image.id}">
+
+                            <div class="text p-4">
+                                <h3>${product.productName}</h3>
+                                <p>${product.productDescription}</p>
+                                <p class="price"><span>${product.basePrice}</span> <a href="/user/addProduct/${product.id}" class="ml-2 btn btn-white btn-outline-white">В корзину</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </c:if>
+            </c:forEach>
+        </div>
+    </div>
 </section>
 
 <!-- loader -->

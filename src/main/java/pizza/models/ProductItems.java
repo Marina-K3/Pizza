@@ -29,7 +29,6 @@ public class ProductItems {
     @Column(name = "size")
     private String size; // S M L
 
-    @Transient
     private Double itemPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
