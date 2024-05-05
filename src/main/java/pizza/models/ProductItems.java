@@ -38,4 +38,22 @@ public class ProductItems {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
+
+    public Double calculatePrice() {
+        double basePrice = this.product.getBasePrice();
+
+
+        // Применяем коэффициент к itemPrice в зависимости от размера
+        if (this.size.equals("S")) {
+            basePrice *= 1.0;
+        } else if (this.size.equals("M")) {
+            basePrice *= 1.4;
+        } else if (this.size.equals("L")) {
+            basePrice *= 1.6;
+        }
+
+        double newPrice = basePrice * this.quantity;
+        return newPrice;
+
+    }
 }

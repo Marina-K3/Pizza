@@ -16,16 +16,10 @@ public class BucketService {
 
         for (ProductItems productItem : bucket.getProductItems()) {
             double itemPrice = productItem.getItemPrice();
-            String size = productItem.getSize();
+            int quantity = productItem.getQuantity();
 
-            // Применяем коэффициент в зависимости от размера
-            if (size.equals("S")) {
-                total += itemPrice * 1.0;
-            } else if (size.equals("M")) {
-                total += itemPrice * 1.4;
-            } else if (size.equals("L")) {
-                total += itemPrice * 1.6;
-            }
+                total += itemPrice;
+
         }
 
         return total;

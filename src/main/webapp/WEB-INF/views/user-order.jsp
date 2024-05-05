@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -62,10 +63,22 @@
 
 <section class="ftco-section">
     <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
+        <div class="row justify-content-center mb-2 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
                 <h2 class="mb-4">Корзина</h2>
                 <p>Здесь вы можете просмотреть выбранные позиции, изменить их размер и кол-во</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2 pb-3 mt-1 pt-1">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Стоимость всей корзины <span>
+    <c:set var="bucketPrice" value="${user.bucket.bucketPrice}" />
+    <c:set var="dotIndex" value="${fn:indexOf(bucketPrice, '.')}"/>
+    <c:set var="wholePart" value="${fn:substring(bucketPrice, 0, dotIndex)}" />
+    <c:set var="fractionPart" value="${fn:substring(bucketPrice, dotIndex + 1, dotIndex + 3)}" />
+    ${wholePart}.<c:out value="${fractionPart}" />
+</span></h2>
+                <p class="flip"><span class="deg1"></span><span class="deg2"></span><span class="deg3"></span></p>
             </div>
         </div>
     </div>
@@ -83,13 +96,31 @@
 
                             <div class="text p-4">
                                 <h3>${productItem.product.productName}</h3>
-
-
+                                <br>
                                     <p class="price">
-                                        <span>${product.basePrice}</span>
-                                        <a href="/user/addProductInBucket/${product.id}" class="ml-2 btn btn-white btn-outline-white">В корзину</a>
+                                        размер: <span>${productItem.size}</span>
+                                        <a href="/user/newSizeS/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">S</a>
+                                        <a href="/user/newSizeM/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">M</a>
+                                        <a href="/user/newSizeL/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">L</a>
                                     </p>
-
+                                  <br>
+                                <p class="price">
+                                    кол-во: <span>${productItem.quantity}</span> шт.
+                                    <a href="/user/addItem/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">+</a>
+                                    <a href="/user/deleteItem/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">-</a>
+                                </p>
+                                <br>
+                                <p class="price">
+                                    цена:
+                                    <span>
+        <c:set var="itemPrice" value="${productItem.itemPrice}" />
+        <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
+        <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
+        <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
+        ${wholePart}.<c:out value="${fractionPart}" />
+    </span>
+                                    BYN
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -99,50 +130,94 @@
         </div>
     </div>
 
+    <section class="ftco-appointment">
+        <div class="overlay"></div>
+        <div class="container-wrap">
+            <div class="row no-gutters d-md-flex align-items-center">
+
+                <div class="col-md-6 appointment ftco-animate" style="margin-left: 30%">
+                    <h3 class="mb-3">Ваш заказ общей суммой
+                        <span>
+                            <c:set var="itemPrice" value="${personalPrice}" />
+                            <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
+                            <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
+                            <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
+                            ${wholePart}.<c:out value="${fractionPart}" /> BYN
+                        </span></h3>
+                    <form action="/user/GetPromo" class="appointment-form" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                        <p>вы можете применить промокод из любой акции, а также ввести свои персональные баллы</p>
+                        <div class="d-md-flex">
+                            <div class="form-group">
+                                <p>Введите баллы (у вас их ${user.points.quantity})</p>
+                                <input type="number" step="1" name="points" class="form-control" value="0" required>
+                            </div>
+                        </div>
+                        <div class="d-md-flex">
+                            <p>Введите промокод</p>
+                            <div class="form-group">
+                                <input type="text" name="productDescription" class="form-control" placeholder="нет" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Перед тем, как делать заказ, нажмите применить, без этого промокод и баллы не сработают</p>
+                            <input type="submit" value="Применить" class="btn btn-primary py-3 px-4">
+                            <a href="/user/createOrder" class="ml-2 btn btn-white btn-outline-white">Сделать заказ</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <div class="container" style="margin-top: 90px">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
-                <h2 class="mb-4">Напитки</h2>
+                <h2 class="mb-4">История заказов</h2>
             </div>
         </div>
     </div>
 
     <div class="container-wrap">
         <div class="row no-gutters d-flex">
-            <c:forEach var="product" items="${products}">
-                <c:if test="${product.type eq 'drink'}">
+            <c:forEach var="order" items="${orders}">
 
                     <div class="col-lg-4 d-flex ftco-animate">
                         <div class="services-wrap d-flex">
-
-                            <img class="img" src="/image/${product.image.id}">
-
-                            <div class="text p-4">
-                                <h3>${product.productName}</h3>
-                                <p>${product.productDescription}</p>
-
-                                <c:set var="productInCart" value="false" />
-                                <c:forEach var="productItem" items="${user.bucket.productItems}">
-                                    <c:if test="${productItem.product.id == product.id}">
-                                        <c:set var="productInCart" value="true" />
-                                        <p class="price">
-                                            <span>уже в корзине</span>
-                                        </p>
+                            <c:if test="${not order.cancelled}">
+                                  <c:if test="${order.is_ready}">
+                                    <img class="img" src="/static/images/ready.png">
+                                  </c:if>
+                                    <c:if test="${not order.is_ready}">
+                                        <img class="img" src="/static/images/notReady.png">
                                     </c:if>
-                                </c:forEach>
-
-                                <c:if test="${not productInCart}">
-                                    <p class="price">
-                                        <span>${product.basePrice}</span>
-                                        <a href="/user/addProductInBucket/${product.id}" class="ml-2 btn btn-white btn-outline-white">В корзину</a>
-                                    </p>
                                 </c:if>
+                            <c:if test="${order.cancelled}">
+                                <img class="img" src="/static/images/Cancel.png">
+                            </c:if>
+                            <div class="text p-4">
+                                <h3>${order.createdTime}</h3>
+                                <p>стоимость: ${order.OrderPrice} BYN:</p>
+
+                                <c:set var="itemPrice" value="${order.OrderPrice}" />
+                                <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
+                                <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
+                                <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
+
+                                <span>${wholePart}.<c:out value="${fractionPart}" /></span>
+                                <c:forEach var="orderItem" items="${order.productItems}">
+                                         <h5> - ${orderItem.product.name} ${orderItem.size} ${orderItem.quantity} шт.</h5>
+                                     </c:forEach>
+                                <c:if test="${not order.cancelled and not order.is_ready}">
+                                <a href="/user/cancelOrder/${order.id}" class="ml-2 btn btn-white btn-outline-white">Отменить</a>
+                                </c:if>
+
                             </div>
                         </div>
                     </div>
 
-                </c:if>
             </c:forEach>
         </div>
     </div>

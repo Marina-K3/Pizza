@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import pizza.models.ProductItems;
 import pizza.models.User;
 import pizza.services.*;
 
@@ -21,6 +22,7 @@ public class UserController {
     private final UserService userService;
     private final ProductService productService;
     private final PromotionService promoService;
+    private final ProductItemService productItemService;
     private final CommentService commentService;
     private final OrderService orderService;
 
@@ -67,6 +69,84 @@ public class UserController {
 
         model.addAttribute("user", user);
         model.addAttribute("orders", orderService.getByUser(user));
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
+        return "user-order";
+
+    }
+
+    @PostMapping("/user/GetPromo")
+    public String showUserOrderWithPromo(Model model, Principal principal) {
+
+        User user = userService.getUserByPrincipal(principal);
+
+        model.addAttribute("user", user);
+        model.addAttribute("orders", orderService.getByUser(user));
+
+        return "user-order";
+
+    }
+
+
+    @GetMapping("/user/newSizeS/{id}")
+    public String sizeS(Model model, Principal principal, @PathVariable("id") Long id) {
+
+        productItemService.setSize(id, "S", principal);
+        User user = userService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("orders", orderService.getByUser(user));
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
+
+        return "user-order";
+
+    }
+
+
+    @GetMapping("/user/newSizeM/{id}")
+    public String sizeM(Model model, Principal principal, @PathVariable("id") Long id) {
+
+        productItemService.setSize(id, "M", principal);
+        User user = userService.getUserByPrincipal(principal);
+
+        model.addAttribute("user", user);
+        model.addAttribute("orders", orderService.getByUser(user));
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
+
+        return "user-order";
+
+    }
+
+    @GetMapping("/user/newSizeL/{id}")
+    public String sizeL(Model model, Principal principal, @PathVariable("id") Long id) {
+
+        productItemService.setSize(id, "L", principal);
+        User user = userService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("orders", orderService.getByUser(user));
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
+
+        return "user-order";
+
+    }
+    @GetMapping("/user/addItem/{id}")
+    public String addItem(Model model, Principal principal, @PathVariable("id") Long id) {
+
+        productItemService.addItem(id, principal);
+        User user = userService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("orders", orderService.getByUser(user));
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
+
+        return "user-order";
+
+    }
+    @GetMapping("/user/deleteItem/{id}")
+    public String deleteItem(Model model, Principal principal, @PathVariable("id") Long id) {
+
+        productItemService.deleteItem(id,  principal);
+        User user = userService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("orders", orderService.getByUser(user));
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
 
         return "user-order";
 
