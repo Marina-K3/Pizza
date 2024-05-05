@@ -38,7 +38,7 @@ public class User {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    //одностор связь
+    //односторон+няя связь
     @OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
     @JoinColumn(name = "bucket_id")
     private Bucket bucket;

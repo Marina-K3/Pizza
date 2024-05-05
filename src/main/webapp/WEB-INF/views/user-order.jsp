@@ -64,55 +64,37 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
-                <h2 class="mb-4">Меню</h2>
-                <p>Здесь вы можете положить в корзину понравившиеся еду и напитки</p>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 heading-section ftco-animate text-center">
-                <h2 class="mb-4">Пиццы</h2>
+                <h2 class="mb-4">Корзина</h2>
+                <p>Здесь вы можете просмотреть выбранные позиции, изменить их размер и кол-во</p>
             </div>
         </div>
     </div>
 
     <div class="container-wrap">
         <div class="row no-gutters d-flex">
-            <c:forEach var="product" items="${products}">
-                <c:if test="${product.type eq 'pizza'}">
+            <c:forEach var="productItem" items="${user.bucket.productItems}">
+
 
                     <div class="col-lg-4 d-flex ftco-animate">
                         <div class="services-wrap d-flex">
 
-                            <img src="/image/${product.image.id}" class="img">
+                            <img src="/image/${productItem.product.image.id}" class="img">
 
 
                             <div class="text p-4">
-                                <h3>${product.productName}</h3>
-                                <p>${product.productDescription}</p>
+                                <h3>${productItem.product.productName}</h3>
 
-                                <c:set var="productInCart" value="false" />
-                                <c:forEach var="productItem" items="${user.bucket.productItems}">
-                                    <c:if test="${productItem.product.id == product.id}">
-                                        <c:set var="productInCart" value="true" />
-                                        <p class="price">
-                                            <span>уже в корзине</span>
-                                        </p>
-                                    </c:if>
-                                </c:forEach>
 
-                                <c:if test="${not productInCart}">
                                     <p class="price">
                                         <span>${product.basePrice}</span>
                                         <a href="/user/addProductInBucket/${product.id}" class="ml-2 btn btn-white btn-outline-white">В корзину</a>
                                     </p>
-                                </c:if>
+
                             </div>
                         </div>
                     </div>
 
-                </c:if>
+
             </c:forEach>
         </div>
     </div>

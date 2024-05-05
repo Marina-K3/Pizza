@@ -1,11 +1,7 @@
 package pizza.services;
 import org.springframework.web.multipart.MultipartFile;
-import pizza.models.Image;
-import pizza.models.Point;
-import pizza.models.User;
-import pizza.repositories.ImageRepository;
-import pizza.repositories.PointRepository;
-import pizza.repositories.UserRepository;
+import pizza.models.*;
+import pizza.repositories.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.ArrayList;
 
 
 @Slf4j
@@ -25,9 +22,17 @@ public class UserService {
 
     private final ImageRepository imageRepository;
 
+    private final ProductRepository productRepository;
+
+    private  final ProductItemRepository productItemRepository;
+
+    private final BucketRepository bucketRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final PointRepository pointRepository;
+
+    private final BucketService bucketService;
 
     public boolean createUser(MultipartFile img, String lastName, String firstName, String phone, String login, String password) throws IOException {
         if (userRepository.findByLogin(login) != null) return false;
@@ -139,5 +144,35 @@ public class UserService {
 
     public List<User> getUsersByIds(List<Long> userIds) {
         return userRepository.findAllById(userIds);
+    }
+
+    public void addProductInBucket(Long idProduct, Principal principal) {
+        Product product = productRepository.getById(idProduct);
+        if (product == null) {
+            // Обработка ошибки: продукт не существует
+            return;
+        }
+        ProductItems productItem = new ProductItems();
+        productItem.setProduct(product);
+        productItem.setQuantity(1); // Установите желаемое количество
+        productItem.setSize("S"); // Установите желаемый размер
+        productItem.setItemPrice(product.getBasePrice()); // Установите цену товара
+
+        User user = userRepository.findByLogin(principal.getName());
+        Bucket bucket = user.getBucket(); // Получите корзину пользователя из объекта User
+        if (bucket == null) {
+            bucket = new Bucket();
+            bucket.setProductItems(new ArrayList<>());
+            user.setBucket(bucket);
+
+        }
+
+        bucket.getProductItems().add(productItem);
+        bucket.setBucketPrice(bucketService.calculateBucketTotal(bucket));
+        user.setBucket(bucket);
+        productItem.setBucket(bucket);
+        productItemRepository.save(productItem);
+        bucketRepository.save(bucket);
+        userRepository.save(user);
     }
 }
