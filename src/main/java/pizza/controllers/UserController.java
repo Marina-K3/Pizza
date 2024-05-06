@@ -103,6 +103,22 @@ public class UserController {
 
     }
 
+    @GetMapping("user/cancelOrder/{id}")
+    public String cancelOrder(Model model, Principal principal, @PathVariable("id") Long id) {
+
+
+        userService.cancelOrder(id);
+        User user = userService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("orders", orderService.getByUser(user));
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
+        return "user-order";
+
+    }
+
+
+
+
 
     @GetMapping("/user/newSizeS/{id}")
     public String sizeS(Model model, Principal principal, @PathVariable("id") Long id) {

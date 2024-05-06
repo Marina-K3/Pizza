@@ -51,8 +51,7 @@
                 <li class="nav-item"><a href="/profile" class="nav-link">Профиль</a></li>
                 <li class="nav-item"><a href="/user/menu" class="nav-link">Меню</a></li>
                 <li class="nav-item"><a href="/user/orders" class="nav-link">Заказы</a></li>
-                <li class="nav-item"><a href="/user/promos" class="nav-link">Акции</a></li>
-                <li class="nav-item"><a href="/user/comments" class="nav-link">Комментарии</a></li>
+                <li class="nav-item"><a href="/user/comments" class="nav-link">Отзывы</a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link">Выйти</a></li>
 
             </ul>

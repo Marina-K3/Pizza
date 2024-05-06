@@ -42,23 +42,24 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand"><span class="flaticon-pizza-1 mr-1"></span>${user.firstName}<br><small>пользователь</small></a>
+        <a class="navbar-brand"><span class="flaticon-pizza-1 mr-1"></span>${admin.firstName}<br><small>администратор</small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/profile" class="nav-link">Профиль</a></li>
-                <li class="nav-item"><a href="/user/menu" class="nav-link">Меню</a></li>
-                <li class="nav-item"><a href="/user/orders" class="nav-link">Заказы</a></li>
-                <li class="nav-item"><a href="/user/comments" class="nav-link">Отзывы</a></li>
+                <li class="nav-item"><a href="/admin/menu" class="nav-link">Меню</a></li>
+                <li class="nav-item"><a href="/admin/orders" class="nav-link">Заказы</a></li>
+                <li class="nav-item"><a href="/admin/promos" class="nav-link">Акции</a></li>
+                <li class="nav-item"><a href="/admin/accounts" class="nav-link">Аккаунты</a></li>
+                <li class="nav-item"><a href="/admin/comments" class="nav-link">Отзывы</a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link">Выйти</a></li>
 
             </ul>
         </div>
     </div>
 </nav>
-
 
 <section class="ftco-section">
 
@@ -78,9 +79,7 @@
                         <div class="desc pl-3">
                             <div class="d-flex text align-items-center">
                                 <h3><span>${comment.user.firstName} ${comment.user.lastName}</span></h3>
-                                <c:if test="${user.id == comment.user.id}">
-                                <a href="/user/deleteComment/${comment.id}" class="mb-4 btn btn-white btn-outline-white">Удалить</a></p>
-                                </c:if>
+                                <a href="/admin/deleteComment/${comment.id}" class="mb-4 btn btn-white btn-outline-white">Удалить</a></p>
                             </div>
                             <div class="d-block">
                                 <p>${comment.comment}</p>
@@ -104,7 +103,7 @@
             <div class="col-md-6 appointment ftco-animate" style="margin-left: 30%">
                 <h3 class="mb-3">Оставьте свой отзыв</h3>
                 <%--                форма--%>
-                <form action="/user/addComment" class="contact-form" method="post">
+                <form action="/admin/addComment" class="contact-form" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <div class="form-group">
                         <textarea name="comment"  cols="30" rows="4" class="form-control" placeholder="Комментарий"></textarea>

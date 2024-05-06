@@ -51,6 +51,10 @@ public class UserService {
         user.setLastName(lastName);
         user.setPhone(phone);
         user.setLogin(login);
+        Bucket bucket = new Bucket();
+        bucket.setBucketPrice(0.0);
+        bucketRepository.save(bucket);
+        user.setBucket(bucket);
         Point point = new Point();
         point.setQuantity(0);
         pointRepository.save(point);
@@ -197,12 +201,12 @@ public class UserService {
 
         // Применяем правило 2 - ищем акцию с соответствующим промокодом и проверяем ее активность и наличие пользователя
         Promotion promotion = promotionRepository.findByPromocode(promo);
-            for(Promotion p : user.getPromotions()) {
-                if (promotion != null && promotion.isActive() && p.getId() == promotion.getId()) {
+
+                if (promotion != null && promotion.isActive() && user.getPoints().getQuantity()<=promotion.getMax_points() && user.getPoints().getQuantity()>= promotion.getMin_points() ) {
                     personalPrice -= (personalPrice * promotion.getDiscount() / 100);
 
                 }
-            }
+
 
 
         userRepository.save(user);
@@ -230,30 +234,44 @@ public class UserService {
                 .doubleValue();
         order.setOrderPrice(roundedPrice);
 
-        order.setProductItems(itemsForDeleting);
 
         order.setCreatedTime(LocalDateTime.now());
         order.setReady(false);
         order.setCancelled(false);
+        order.setProductItems(new ArrayList<>());
+        for(ProductItems productItem :  itemsForDeleting) {
+            ProductItems p = new ProductItems();
+            p.setProduct(productRepository.getById(productItem.getProduct().getId()));
+            p.setOrder(order);
+            p.setQuantity(productItem.getQuantity());
+            p.setSize(productItem.getSize());
+            p.setItemPrice(productItem.getItemPrice());
+           // productItemRepository.save(p);
+            order.getProductItems().add(p);
+        }
 
-        bucket.setProductItems(new ArrayList<>());
+
+        bucket.getProductItems().clear();
         bucket.setBucketPrice(bucketService.calculateBucketTotal(bucket));
         user.setBucket(bucket);
 
         user.getPoints().setQuantity(user.getPoints().getQuantity()+1);
-
-        bucketRepository.save(bucket);
         userRepository.save(user);
+//        bucketRepository.save(bucket);
+//        userRepository.save(user);
+
+
+
+
         order.setUser(user);
         orderRepository.save(order);
 
-        for(ProductItems productItem :  itemsForDeleting) {
-            productItem.setBucket(null);
-            productItem.setOrder(order);
-            productItemRepository.save(productItem);
-        }
 
+    }
 
-
+    public void cancelOrder(Long id) {
+        Order order = orderRepository.getById(id);
+        order.setCancelled(true);
+        orderRepository.save(order);
     }
 }

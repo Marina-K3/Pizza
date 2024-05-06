@@ -52,8 +52,7 @@
                 <li class="nav-item"><a href="/profile" class="nav-link">Профиль</a></li>
                 <li class="nav-item"><a href="/user/menu" class="nav-link">Меню</a></li>
                 <li class="nav-item"><a href="/user/orders" class="nav-link">Заказы</a></li>
-                <li class="nav-item"><a href="/user/promos" class="nav-link">Акции</a></li>
-                <li class="nav-item"><a href="/user/comments" class="nav-link">Комментарии</a></li>
+                <li class="nav-item"><a href="/user/comments" class="nav-link">Отзывы</a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link">Выйти</a></li>
 
             </ul>
@@ -207,7 +206,7 @@
 
                                 <span>${wholePart}.<c:out value="${fractionPart}" /></span>
                                 <c:forEach var="orderItem" items="${order.productItems}">
-                                         <p> - ${orderItem.product.productName} ${orderItem.size} ${orderItem.quantity} шт.</p>
+                                         <p> - ${orderItem.product.productName}, ${orderItem.size} размер, ${orderItem.quantity} шт.</p>
                                      </c:forEach>
                                 <c:if test="${not order.cancelled and not order.ready}">
                                 <a href="/user/cancelOrder/${order.id}" class="ml-2 btn btn-white btn-outline-white">Отменить</a>
