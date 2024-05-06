@@ -9,7 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -33,6 +36,10 @@ public class UserService {
     private final PointRepository pointRepository;
 
     private final BucketService bucketService;
+
+    private final PromotionRepository promotionRepository;
+
+    private final OrderRepository orderRepository;
 
     public boolean createUser(MultipartFile img, String lastName, String firstName, String phone, String login, String password) throws IOException {
         if (userRepository.findByLogin(login) != null) return false;
@@ -174,5 +181,79 @@ public class UserService {
         productItemRepository.save(productItem);
         bucketRepository.save(bucket);
         userRepository.save(user);
+    }
+
+    public double getPromo(Principal principal, int points, String promo) {
+        double personalPrice = 0.0;
+        User user = userRepository.findByLogin(principal.getName());
+        personalPrice = user.getBucket().getBucketPrice();
+
+        // Применяем правило 1 - снимаем все баллы клиента, если введенные баллы больше
+        if (points > user.getPoints().getQuantity()) {
+            points = user.getPoints().getQuantity();
+        }
+        personalPrice -= points;
+        user.getPoints().setQuantity(user.getPoints().getQuantity() - points);
+
+        // Применяем правило 2 - ищем акцию с соответствующим промокодом и проверяем ее активность и наличие пользователя
+        Promotion promotion = promotionRepository.findByPromocode(promo);
+            for(Promotion p : user.getPromotions()) {
+                if (promotion != null && promotion.isActive() && p.getId() == promotion.getId()) {
+                    personalPrice -= (personalPrice * promotion.getDiscount() / 100);
+
+                }
+            }
+
+
+        userRepository.save(user);
+        return personalPrice;
+    }
+
+    public void createOrder(Principal principal, double price) {
+
+        User user = userRepository.findByLogin(principal.getName());
+        Bucket bucket = user.getBucket(); // Получите корзину пользователя из объекта User
+        if (bucket == null) {
+            bucket = new Bucket();
+            bucket.setProductItems(new ArrayList<>());
+            user.setBucket(bucket);
+            return;
+        }
+
+        List<ProductItems> itemsForDeleting = bucket.getProductItems();
+
+        Order order = new Order();
+
+// Округление цены до 3 знаков после запятой
+        double roundedPrice = BigDecimal.valueOf(price)
+                .setScale(3, RoundingMode.HALF_UP)
+                .doubleValue();
+        order.setOrderPrice(roundedPrice);
+
+        order.setProductItems(itemsForDeleting);
+
+        order.setCreatedTime(LocalDateTime.now());
+        order.setReady(false);
+        order.setCancelled(false);
+
+        bucket.setProductItems(new ArrayList<>());
+        bucket.setBucketPrice(bucketService.calculateBucketTotal(bucket));
+        user.setBucket(bucket);
+
+        user.getPoints().setQuantity(user.getPoints().getQuantity()+1);
+
+        bucketRepository.save(bucket);
+        userRepository.save(user);
+        order.setUser(user);
+        orderRepository.save(order);
+
+        for(ProductItems productItem :  itemsForDeleting) {
+            productItem.setBucket(null);
+            productItem.setOrder(order);
+            productItemRepository.save(productItem);
+        }
+
+
+
     }
 }

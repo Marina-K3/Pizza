@@ -88,42 +88,42 @@
             <c:forEach var="productItem" items="${user.bucket.productItems}">
 
 
-                    <div class="col-lg-4 d-flex ftco-animate">
-                        <div class="services-wrap d-flex">
+                <div class="col-lg-4 d-flex ftco-animate">
+                    <div class="services-wrap d-flex">
 
-                            <img src="/image/${productItem.product.image.id}" class="img">
+                        <img src="/image/${productItem.product.image.id}" class="img">
 
 
-                            <div class="text p-4">
-                                <h3>${productItem.product.productName}</h3>
-                                <br>
-                                    <p class="price">
-                                        размер: <span>${productItem.size}</span>
-                                        <a href="/user/newSizeS/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">S</a>
-                                        <a href="/user/newSizeM/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">M</a>
-                                        <a href="/user/newSizeL/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">L</a>
-                                    </p>
-                                  <br>
-                                <p class="price">
-                                    кол-во: <span>${productItem.quantity}</span> шт.
-                                    <a href="/user/addItem/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">+</a>
-                                    <a href="/user/deleteItem/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">-</a>
-                                </p>
-                                <br>
-                                <p class="price">
-                                    цена:
-                                    <span>
+                        <div class="text p-4">
+                            <h3>${productItem.product.productName}</h3>
+                            <br>
+                            <p class="price">
+                                размер: <span>${productItem.size}</span>
+                                <a href="/user/newSizeS/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">S</a>
+                                <a href="/user/newSizeM/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">M</a>
+                                <a href="/user/newSizeL/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">L</a>
+                            </p>
+                            <br>
+                            <p class="price">
+                                кол-во: <span>${productItem.quantity}</span> шт.
+                                <a href="/user/addItem/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">+</a>
+                                <a href="/user/deleteItem/${productItem.id}" class="ml-2 btn btn-white btn-outline-white">-</a>
+                            </p>
+                            <br>
+                            <p class="price">
+                                цена:
+                                <span>
         <c:set var="itemPrice" value="${productItem.itemPrice}" />
         <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
         <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
         <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
         ${wholePart}.<c:out value="${fractionPart}" />
     </span>
-                                    BYN
-                                </p>
-                            </div>
+                                BYN
+                            </p>
                         </div>
                     </div>
+                </div>
 
 
             </c:forEach>
@@ -138,33 +138,27 @@
                 <div class="col-md-6 appointment ftco-animate" style="margin-left: 30%">
                     <h3 class="mb-3">Ваш заказ общей суммой
                         <span>
+                            <c:set var="itemPrice" value="${user.bucket.bucketPrice}" />
+                            <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
+                            <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
+                            <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
+                            ${wholePart}.<c:out value="${fractionPart}" /> BYN
+                        </span>был уменьшен до <span>
                             <c:set var="itemPrice" value="${personalPrice}" />
                             <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
                             <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
                             <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
                             ${wholePart}.<c:out value="${fractionPart}" /> BYN
-                        </span></h3>
-                    <form action="/user/GetPromo" class="appointment-form" method="post">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <p>вы можете применить промокод из любой акции, а также ввести свои персональные баллы</p>
-                        <div class="d-md-flex">
-                            <div class="form-group">
-                                <p>Введите баллы (у вас их ${user.points.quantity})</p>
-                                <input type="number" step="1" name="points" class="form-control" value="0" required>
-                            </div>
-                        </div>
-                        <div class="d-md-flex">
-                            <p>Введите промокод</p>
-                            <div class="form-group">
-                                <input type="text" name="promo" class="form-control" placeholder="нет" required>
-                            </div>
-                        </div>
+                        </span> что составило <c:set var="itemPrice" value="${user.bucket.bucketPrice - personalPrice}" />
+                        <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
+                        <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
+                        <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
+                        ${wholePart}.<c:out value="${fractionPart}" /> BYN</h3>
 
                         <div class="form-group">
-                            <p>Перед тем, как делать заказ, нажмите применить, без этого промокод и баллы не сработают</p>
-                            <input type="submit" value="Применить" class="btn btn-primary py-3 px-4">
+                            <a href="/user/createOrder/${personalPrice}" class="ml-2 btn btn-white btn-outline-white">Сделать заказ</a>
                         </div>
-                    </form>
+
                 </div>
             </div>
         </div>
@@ -183,39 +177,39 @@
         <div class="row no-gutters d-flex">
             <c:forEach var="order" items="${orders}">
 
-                    <div class="col-lg-4 d-flex ftco-animate">
-                        <div class="services-wrap d-flex">
-                            <c:if test="${not order.cancelled}">
-                                  <c:if test="${order.ready}">
-                                    <img class="img" src="/static/images/ready.png">
-                                  </c:if>
-                                    <c:if test="${not order.ready}">
-                                        <img class="img" src="/static/images/notReady.png">
-                                    </c:if>
-                                </c:if>
-                            <c:if test="${order.cancelled}">
-                                <img class="img" src="/static/images/Cancel.png">
+                <div class="col-lg-4 d-flex ftco-animate">
+                    <div class="services-wrap d-flex">
+                        <c:if test="${not order.cancelled}">
+                            <c:if test="${order.ready}">
+                                <img class="img" src="/static/images/ready.png">
                             </c:if>
-                            <div class="text p-4">
-                                <h3>${order.createdTime}</h3>
-                                <p>стоимость: ${order.orderPrice} BYN:</p>
+                            <c:if test="${not order.ready}">
+                                <img class="img" src="/static/images/notReady.png">
+                            </c:if>
+                        </c:if>
+                        <c:if test="${order.cancelled}">
+                            <img class="img" src="/static/images/Cancel.png">
+                        </c:if>
+                        <div class="text p-4">
+                            <h3>${order.createdTime}</h3>
+                            <p>стоимость: ${order.orderPrice} BYN:</p>
 
-                                <c:set var="itemPrice" value="${order.orderPrice}" />
-                                <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
-                                <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
-                                <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
+                            <c:set var="itemPrice" value="${order.orderPrice}" />
+                            <c:set var="dotIndex" value="${fn:indexOf(itemPrice, '.')}"/>
+                            <c:set var="wholePart" value="${fn:substring(itemPrice, 0, dotIndex)}" />
+                            <c:set var="fractionPart" value="${fn:substring(itemPrice, dotIndex + 1, dotIndex + 3)}" />
 
-                                <span>${wholePart}.<c:out value="${fractionPart}" /></span>
-                                <c:forEach var="orderItem" items="${order.productItems}">
-                                         <p> - ${orderItem.product.productName} ${orderItem.size} ${orderItem.quantity} шт.</p>
-                                     </c:forEach>
-                                <c:if test="${not order.cancelled and not order.ready}">
+                            <span>${wholePart}.<c:out value="${fractionPart}" /></span>
+                            <c:forEach var="orderItem" items="${order.productItems}">
+                                <p> - ${orderItem.product.productName} ${orderItem.size} ${orderItem.quantity} шт.</p>
+                            </c:forEach>
+                            <c:if test="${not order.cancelled and not order.ready}">
                                 <a href="/user/cancelOrder/${order.id}" class="ml-2 btn btn-white btn-outline-white">Отменить</a>
-                                </c:if>
+                            </c:if>
 
-                            </div>
                         </div>
                     </div>
+                </div>
 
             </c:forEach>
         </div>

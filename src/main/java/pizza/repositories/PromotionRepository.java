@@ -4,4 +4,5 @@ import pizza.models.Promotion;
 
 public interface PromotionRepository extends JpaRepository<Promotion, Long> {
 
+    Promotion findByPromocode(String promo);
 }

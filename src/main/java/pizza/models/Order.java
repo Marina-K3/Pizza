@@ -26,7 +26,7 @@ public class Order {
 
     private boolean cancelled;
 
-    private boolean is_ready;
+    private boolean ready;
 
 
     //двустор связь

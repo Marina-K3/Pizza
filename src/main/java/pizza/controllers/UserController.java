@@ -75,13 +75,30 @@ public class UserController {
     }
 
     @PostMapping("/user/GetPromo")
-    public String showUserOrderWithPromo(Model model, Principal principal) {
+    public String showUserOrderWithPromo(Model model, Principal principal,
+                                         @RequestParam("points") int points,
+                                         @RequestParam("promo") String promo) {
 
         User user = userService.getUserByPrincipal(principal);
 
+        model.addAttribute("orders", orderService.getByUser(user));
+        double personalPrice = userService.getPromo(principal, points, promo);
+        model.addAttribute("personalPrice", personalPrice);
+        model.addAttribute("user", user);
+        return "user-order-promo";
+
+    }
+
+    @GetMapping("/user/createOrder/{price}")
+    public String createOrder(Model model, Principal principal, @PathVariable("price") String priceStr) {
+
+        double price = Double.parseDouble(priceStr);
+
+        userService.createOrder(principal, price);
+        User user = userService.getUserByPrincipal(principal);
         model.addAttribute("user", user);
         model.addAttribute("orders", orderService.getByUser(user));
-
+        model.addAttribute("personalPrice", user.getBucket().getBucketPrice());
         return "user-order";
 
     }
